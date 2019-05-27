@@ -3,7 +3,8 @@
   $dbh = Database::conexao();
   require_once "assets/mpdf60/mpdf.php";
 
-
+  echo"<script>alert(".$data_mensal.");</script>";
+  
   class reportCliente extends mpdf{  
  
     // Atributos da classe  
@@ -12,7 +13,7 @@
     private $css  = null;
     private $data_mensal  = null;
     private $titulo = null;
-    echo"<script>alert(".$data_mensal.");</script>";
+    
 
     /*  
     * Construtor da classe  
