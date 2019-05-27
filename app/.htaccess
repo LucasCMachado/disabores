@@ -1,0 +1,84 @@
+#AddHandler php7-script .php
+#suPHP_ConfigPath /home/disabores
+
+DirectoryIndex login.php index.php
+
+<IfModule mod_rewrite.c>
+
+  RewriteEngine On
+  RewriteRule ^inicio/?$ /index.php [NC,L]
+  RewriteRule ^login/?$ /login.php [NC,L]
+  RewriteRule ^logout/?$ /logout.php [NC,L]
+  
+  #Empresa
+  RewriteRule ^empresa/?$ /empresa.php [NC,L]
+  #Tarefas
+  RewriteRule ^tarefas/?$ /tarefas.php [NC,L]
+
+  #Periodo Manha
+  RewriteRule ^periodos/?$ /periodos.php [NC,L]
+  RewriteRule ^manha/?$ /manha.php [NC,L]
+  RewriteRule ^fecha-periodo-([0-9]+)/?$ /assets/php/inserts/fecha_periodo.php?id=$1 [NC]
+
+  #Produtos
+  RewriteRule ^produto/?$ /produto.php [NC,L]
+
+  #Relatorios
+  RewriteRule ^relatorios/?$ /relatorios.php [NC,L]
+  RewriteRule ^relatorios-venda-mensal/?$ /relatorios_exibicao_mensal_vendas.php [NC,L]
+  RewriteRule ^relatorios-venda-cliente/?$ /relatorios_exibicao_cliente_vendas.php [NC,L]
+  RewriteRule ^relatorios-venda-mensal/?$ /relatorios_exibicao_mensal_vendas.php [NC,L]
+  RewriteRule ^relatorios-faturas/?$ /relatorios_exibicao_faturas.php [NC,L]
+  RewriteRule ^relatorios-inadimplentes/?$ /relatorios_inadimplentes_um.php [NC,L]
+  RewriteRule ^relatorios-produtos-periodos/?$ /relatorios_produtos_periodo.php [NC,L]
+
+  #Clientes
+  RewriteRule ^cliente/?$ /cliente.php [NC,L]
+
+  #Cardápio
+  RewriteRule ^cardapio/?$ /cardapio.php [NC,L]
+
+  #Orçamento
+  RewriteRule ^orcamentos/?$ /orcamento.php [NC,L]
+  RewriteRule ^novo-orcamento/?$ /cadastrar_orcamento.php [NC,L]
+  RewriteRule ^orcamentos-entregues/?$ /orcamento_entregue.php [NC,L]
+  RewriteRule ^editar-orcamento-([0-9]+)/?$ /editar_orcamento.php?id=$1 [NC,L]
+
+  #Usuarios
+  RewriteRule ^usuarios/?$ /usuario.php [NC,L]
+  RewriteRule ^clienteUsuario-([0-9]+)/?$ /senha_cliente.php?cliente=$1 [NC]
+
+  #Passar dados por url
+  RewriteRule ^editar-album-([0-9]+)/?$ /editar_album.php?id=$1 [NC]
+   
+  # Página de exibição de um produto
+  RewriteRule ^artigo/([a-z0-9-]+)/([0-9]+)/?$ /artigo.php?id=$3&nome=$2&categoria=$1 [NC]
+  
+</IfModule>
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE image/svg+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/atom_xml
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-httpd-php
+AddOutputFilterByType DEFLATE application/x-httpd-fastphp
+AddOutputFilterByType DEFLATE application/x-httpd-eruby
+AddOutputFilterByType DEFLATE text/html
+
+SetOutputFilter DEFLATE
+
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+
+BrowserMatch ^Mozilla/4.0[678] no-gzip
+
+BrowserMatch ^HMSI[E] !no-gzip !gzip-only-text/html
+
+SetEnvIfNoCase Request_URI .(?:gif|jpe?g|png)$ no-gzip dont-vary
+</IfModule>
